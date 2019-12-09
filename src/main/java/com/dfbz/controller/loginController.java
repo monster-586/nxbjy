@@ -86,6 +86,8 @@ public class loginController {
         if (!StringUtils.isEmpty(session.getAttribute("emailCode")) && !StringUtils.isEmpty(session.getAttribute("password"))
                 && !StringUtils.isEmpty(session.getAttribute("comfpassword"))) {
             if (session.getAttribute("emailCode").equals(map.get("emailCode"))) {
+
+                System.out.println(56464541135156132l);
             }
         }
         return null;
