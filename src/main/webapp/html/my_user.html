@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/nxbjy/">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="static/vendor/bootstrap/css/bootstrap.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="static/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Custom Font Icons CSS-->
+    <link rel="stylesheet" href="static/css/font.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="static/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="static/css/custom.css">
+    <title>我的用户列表</title>
+
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg" id="navbar">
+
+    </nav>
+</header>
+
+<div class="d-flex align-items-stretch">
+    <!-- Sidebar Navigation-->
+    <nav id="sidebar">
+        <!-- Sidebar Header-->
+    </nav>
+    <!-- Sidebar Navigation end-->
+    <div class="page-content">
+        <div class="page-header">
+            <div class="container-fluid">
+                <h2 class="h5 no-margin-bottom">我的关注列表</h2>
+            </div>
+        </div>
+        <section class="no-padding-bottom">
+
+            <div class="list-group myList">
+                <ul>
+                    <li class="list-group-item">
+                        <a href="user_detail.html">小东</a>
+                        <div style="float: right" class="text-right">
+                            <input type="submit" class="btn btn-danger" value="取消关注">
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="user_detail.html">小标</a>
+                        <div style="float: right" class="text-right">
+                            <input type="submit" class="btn btn-danger" value="取消关注">
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="user_detail.html">小艾</a>
+                        <div style="float: right" class="text-right">
+                            <input type="submit" class="btn btn-danger" value="取消关注">
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="user_detail.html">小赵</a>
+                        <div style="float: right" class="text-right">
+                            <input type="submit" class="btn btn-danger" value="取消关注">
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="user_detail.html">小王</a>
+                        <div style="float: right" class="text-right">
+                            <input type="submit" class="btn btn-danger" value="取消关注">
+                        </div>
+                    </li>
+                </ul>
+                <nav class="text-center" aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer__block block no-margin-bottom">
+                <div class="container-fluid text-center">
+                    <p class="no-margin-bottom">Copyright &copy; 2019.Company <a href="#" >东方标准</a> </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- JavaScript files-->
+<script src="static/vendor/jquery/jquery.min.js"></script>
+<script src="static/vendor/popper.js/umd/popper.min.js"> </script>
+<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="static/vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="static/vendor/chart.js/Chart.min.js"></script>
+<script src="static/vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="static/js/charts-home.js"></script>
+<script src="static/js/front.js"></script>
+<script src="static/js/custom.js"></script>
+
+<script>
+    $(function () {
+        $("#navbar").load("html/commons/navbar.html");
+        $("#sidebar").load("html/commons/siber.html");
+    })
+</script>
+</body>
+</html>
