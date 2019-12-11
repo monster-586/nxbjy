@@ -26,19 +26,23 @@ public class loginController {
     public Result checkAccount(@RequestBody Map<String, Object> map, HttpSession session) {
         Result result = new Result();
         if (!StringUtils.isEmpty(map.get("code"))) {
+//            填写的user,用于忘记密码查找
             Object code = map.get("code");
             Object checkCode = session.getAttribute("checkCode");
             if (checkCode.equals(code)) {
                 User sysUser = new User();
                 String account = (String) map.get("account");
-                String password = (String) map.get("password");
                 sysUser.setUsername(account);
+                String password = (String) map.get("password");
                 sysUser.setPassword(password);
 //                sysUser.setPassword(EncryptUtils.MD5_HEX(EncryptUtils.MD5_HEX(password) + account));
                 User loginUser = userService.selectOne(sysUser);
                 if (loginUser != null) {
+
                     result.setMsg("登录成功");
                     result.setSysuser(loginUser);
+//                    覆盖错误的loginUser
+                    session.setAttribute("longinUser",loginUser);
                 } else {
                     result.setMsg("账号或者密码错误");
                 }

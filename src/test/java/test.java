@@ -1,3 +1,4 @@
+import com.dfbz.Utils.Email;
 import com.dfbz.config.SpringMybatis;
 import com.dfbz.entity.User;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -58,5 +60,10 @@ public class test {
     public void selectOne() {
         User user = userService.selectByPrimaryKey(1);
         System.out.println(user);
+    }
+
+    @Test
+    public void email(){
+        Email.send("122414783@qq.com",123456);
     }
 }
