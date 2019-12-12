@@ -11,7 +11,7 @@ let vm = new Vue({
     methods: {
         updatePassword:function () {
             axios({
-                url: 'email/updatePassword',
+                url: 'login/forget',
                 method: 'post',
                 data: this.map
             }).then(response => {

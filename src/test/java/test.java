@@ -1,5 +1,6 @@
 import com.dfbz.Utils.Email;
 import com.dfbz.config.SpringMybatis;
+import com.dfbz.dao.UserMapper;
 import com.dfbz.entity.User;
 
 import com.dfbz.service.UserService;
@@ -65,5 +66,13 @@ public class test {
     @Test
     public void email(){
         Email.send("122414783@qq.com",123456);
+    }
+
+    @Autowired
+    UserMapper userMapper;
+    @Test
+    public void focus(){
+        int focus = userMapper.focus(1);
+        System.out.println(focus);
     }
 }

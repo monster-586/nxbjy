@@ -34,35 +34,5 @@ public class emailController {
         return result;
     }
 
-    @Autowired
-    UserService userService;
 
-    @RequestMapping("updatePassword")
-    @ResponseBody
-    public Result check(@RequestBody Map<String, Object> map, HttpSession session) {
-        Result result = new Result();
-        Integer emailCode = (Integer) session.getAttribute("emailCode");
-        String code = (String) map.get("code");
-        if (!StringUtils.isEmpty(map.get("code"))
-                && !StringUtils.isEmpty(map.get("password"))
-                && !StringUtils.isEmpty(map.get("account"))
-                && emailCode.equals(Integer.valueOf(code))
-        ) {
-            User loginUser = new User();
-            loginUser.setUsername((String) map.get("account"));
-            User checkUser = userService.selectOne(loginUser);
-            if (checkUser != null && !checkUser.getPassword().equals(map.get("password"))) {
-                checkUser.setPassword((String) map.get("password"));
-                int i = userService.updateByPrimaryKey(checkUser);
-                if (i > 0) {
-                    result.setMsg("修改成功");
-                }
-            } else {
-                result.setMsg("账号有误或与原密码相同");
-            }
-        } else {
-            result.setMsg("请填写账号密码或验证码不正确");
-        }
-        return result;
-    }
 }

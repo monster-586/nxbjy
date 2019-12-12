@@ -29,4 +29,13 @@ public class UserServiceImpl extends tservisceIpm<User> implements UserService {
         PageInfo<User> pageInfo = new PageInfo<>(areas);
         return pageInfo;
     }
+
+    @Override
+    public User userDetail(Integer uId) {
+        int focus = userMapper.focus(uId);
+        User user = userMapper.selectByPrimaryKey(uId);
+        user.setFocus(focus);
+        return user;
+
+    }
 }

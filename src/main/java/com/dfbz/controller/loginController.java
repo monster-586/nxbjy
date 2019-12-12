@@ -25,6 +25,9 @@ public class loginController {
     @ResponseBody
     public Result checkAccount(@RequestBody Map<String, Object> map, HttpSession session) {
         Result result = new Result();
+//        if(session.getAttribute("longinUser")!=null){
+//
+//        }
         if (!StringUtils.isEmpty(map.get("code"))) {
 //            填写的user,用于忘记密码查找
             Object code = map.get("code");
@@ -85,17 +88,31 @@ public class loginController {
 
     @RequestMapping("forget")
     @ResponseBody
-    public Result forget(@RequestBody Map<String, Object> map, HttpSession session) {
-
-        if (!StringUtils.isEmpty(session.getAttribute("emailCode")) && !StringUtils.isEmpty(session.getAttribute("password"))
-                && !StringUtils.isEmpty(session.getAttribute("comfpassword"))) {
-            if (session.getAttribute("emailCode").equals(map.get("emailCode"))) {
-
-                System.out.println(56464541135156132l);
+    public Result check(@RequestBody Map<String, Object> map, HttpSession session) {
+        Result result = new Result();
+        Integer emailCode = (Integer) session.getAttribute("emailCode");
+        String code = (String) map.get("code");
+        if (!StringUtils.isEmpty(map.get("code"))
+                && !StringUtils.isEmpty(map.get("password"))
+                && !StringUtils.isEmpty(map.get("account"))
+                && emailCode.equals(Integer.valueOf(code))
+        ) {
+            User loginUser = new User();
+            loginUser.setUsername((String) map.get("account"));
+            User checkUser = userService.selectOne(loginUser);
+            if (checkUser != null && !checkUser.getPassword().equals(map.get("password"))) {
+                checkUser.setPassword((String) map.get("password"));
+                int i = userService.updateByPrimaryKey(checkUser);
+                if (i > 0) {
+                    result.setMsg("修改成功");
+                }
+            } else {
+                result.setMsg("账号有误或与原密码相同");
             }
+        } else {
+            result.setMsg("请填写账号密码或验证码不正确");
         }
-        return null;
+        return result;
     }
-
 
 }

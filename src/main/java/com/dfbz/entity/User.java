@@ -1,8 +1,11 @@
 package com.dfbz.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 @Table(name = "user")
@@ -49,7 +52,7 @@ public class User {
     /**
      * 简介
      */
-    @Column(name="`desc`")
+    @Column(name = "`desc`")
     private String desc;
 
     /**
@@ -61,6 +64,7 @@ public class User {
     /**
      * 上次登录时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "login_time")
     private Date loginTime;
 
@@ -91,6 +95,16 @@ public class User {
      */
     @Column(name = "dept_id")
     private Integer deptId;
+    @Transient
+    private Integer focus;
+
+    public Integer getFocus() {
+        return focus;
+    }
+
+    public void setFocus(Integer focus) {
+        this.focus = focus;
+    }
 
     /**
      * @return id
@@ -255,6 +269,7 @@ public class User {
      *
      * @return register_time - 注册时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     public Date getRegisterTime() {
         return registerTime;
     }
@@ -273,6 +288,7 @@ public class User {
      *
      * @return login_time - 上次登录时间
      */
+
     public Date getLoginTime() {
         return loginTime;
     }

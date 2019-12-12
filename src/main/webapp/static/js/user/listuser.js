@@ -25,9 +25,9 @@ let vm = new Vue({
                 console.log(error)
             })
         },
-        selectOne: function (uid) {
+        userDetail: function (uid) {
             axios({
-                url: 'manager/user/selectOne',
+                url: 'manager/user/userDetail',
                 method: 'get',
                 params:{
                   uId:uid

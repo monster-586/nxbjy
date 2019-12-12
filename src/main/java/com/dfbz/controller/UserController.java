@@ -1,5 +1,6 @@
 package com.dfbz.controller;
 
+import com.dfbz.dao.UserMapper;
 import com.dfbz.entity.Result;
 
 import com.dfbz.entity.User;
@@ -19,7 +20,8 @@ import java.util.Map;
 @RequestMapping("manager/user")
 public class UserController {
     @Autowired
-    UserService userService;
+   private UserService userService;
+
 
     @RequestMapping("list")
     @ResponseBody
@@ -30,11 +32,10 @@ public class UserController {
         return pageInfo;
     }
 
-    @RequestMapping("selectOne")
+    @RequestMapping("userDetail")
     @ResponseBody
-    public User selectOne(String uId){
-        User user = userService.selectByPrimaryKey(uId);
-        return user;
+        public User userDetail(Integer uId){
+       return userService.userDetail(uId);
     }
 
 

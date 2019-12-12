@@ -1,6 +1,7 @@
 let vm = new Vue({
     el: '#containermyBox',
     data: {
+        remember:'',
         map: {
             account: '',
             password: '',
