@@ -5,7 +5,6 @@ let vm = new Vue({
         map: {
             account: '',
             password: '',
-            comfpassword: '',
             code:''
         }
     },
@@ -26,7 +25,7 @@ let vm = new Vue({
             axios({
                 url: 'email/send',
                 method: 'get',
-                data:{
+                params:{
                     email:this.email
                 }
             }).then(response=>{
@@ -38,6 +37,7 @@ let vm = new Vue({
     },
     created: function () {
        this.map.account = parent.layer.account;
+       console.log(this.map.account);
     },
     mounted: function () {
 

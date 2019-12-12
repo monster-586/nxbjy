@@ -49,7 +49,7 @@ public class SpringRedis {
 
     /**
      * 为了方便管理数据库，在数据库中也可以看到key和value数据的结构，需要自定义序列化策略
-     *
+     *db.properties
      * @param factory
      * @return
      */

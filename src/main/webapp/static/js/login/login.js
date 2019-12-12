@@ -40,7 +40,7 @@ let vm = new Vue({
             });
         },
         toforget: function () {
-            layer.accout=this.map.account;
+            layer.account=this.map.account;
             let upd = layer.open({
                 type: 2,
                 title: "忘记密码",

@@ -184,6 +184,12 @@ mvn install:install-file -DgroupId=com.baidu -DartifactId=ueditor  -Dversion=1.1
       <artifactId>mail</artifactId>
       <version>1.4.7</version>
     </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>5.0.12.Final</version>
+    </dependency>
+
 
   </dependencies>
 </project>
