@@ -1,25 +1,23 @@
 let em = new Vue({
-    el: '',
+    el: '#loginSidebar',
     data: {
-        user:{}
+        loginUser:{}
     },
     methods: {
         getUser:function () {
             axios({
-                url: 'login/loginUser',
+                url: 'login/sidebarUser',
                 method: 'get',
             }).then(response => {
-                this.user = response.data;
+                this.loginUser = response.data;
             }).catch(function (error) {
                 console.log(error)
             })
-        },
-        loginOut:function () {
-
         }
+
     },
     created: function () {
-        this.getUser()
+        this.getUser();
     }
 
 

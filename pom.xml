@@ -125,11 +125,11 @@ ueditor：1.1.2在中央仓库不存在，需要自己打包：
 mvn install:install-file -DgroupId=com.baidu -DartifactId=ueditor  -Dversion=1.1.2 -Dpackaging=jar -Dfile=F:\IdeaProjects\guguanjia_day04\guguanjia\src\main\webapp\WEB-INF\lib\ueditor-1.1.2.jar
 3.修改-Dfile的值到本地jar目录位置并执行
 -->
-    <dependency>
-      <groupId>com.baidu</groupId>
-      <artifactId>ueditor</artifactId>
-      <version>1.1.2</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.baidu</groupId>-->
+      <!--<artifactId>ueditor</artifactId>-->
+      <!--<version>1.1.2</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>

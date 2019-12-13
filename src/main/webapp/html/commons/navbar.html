@@ -9,7 +9,7 @@
         </form>
     </div>
 </div>
-<div class="container-fluid d-flex align-items-center justify-content-between">
+<div class="container-fluid d-flex align-items-center justify-content-between" id="loginOutDiv">
     <div class="navbar-header">
         <!-- Navbar Header--><a href="home.html" class="navbar-brand">
         <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">小标</strong><strong>会议平台</strong></div>
@@ -20,7 +20,8 @@
     <div class="right-menu list-inline no-margin-bottom">
         <!-- Log out -->
         <div class="list-inline-item logout">
-            <a id="logout" href="static/index.html" class="nav-link"><span class="d-none d-sm-inline">Logout </span></a>
+            <a id="logout" @click="loginOut" class="nav-link"><span class="d-none d-sm-inline">Logout </span></a>
         </div>
     </div>
 </div>
+<script src="static/js/common/navbar.js"></script>

@@ -1,21 +1,14 @@
 package com.dfbz.controller;
 
-import com.dfbz.dao.UserMapper;
-import com.dfbz.entity.Result;
-
 import com.dfbz.entity.User;
 import com.dfbz.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.util.Map;
 
 @Controller

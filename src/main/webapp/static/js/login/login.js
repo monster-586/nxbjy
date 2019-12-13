@@ -5,7 +5,8 @@ let vm = new Vue({
         map: {
             account: '',
             password: '',
-            code: ''
+            code: '',
+            remember:false
         }
     },
     methods: {
@@ -51,6 +52,9 @@ let vm = new Vue({
                     console.log("**********");
                 }
             });
+        },
+        checkbox:function () {
+            this.map.remember=!this.map.remember
         }
 
     },

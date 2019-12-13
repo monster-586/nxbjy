@@ -26,37 +26,32 @@ public class loginController {
     @ResponseBody
     public Result checkAccount(@RequestBody Map<String, Object> map, HttpSession session) {
         Result result = new Result();
-//        if(session.getAttribute("longinUser")!=null){
-//
-//        }
-        if (!StringUtils.isEmpty(map.get("code"))) {
-//            填写的user,用于忘记密码查找
-            Object code = map.get("code");
-            Object checkCode = session.getAttribute("checkCode");
-            if (checkCode.equals(code)) {
-                User sysUser = new User();
-                String account = (String) map.get("account");
-                sysUser.setUsername(account);
-                String password = (String) map.get("password");
-                sysUser.setPassword(password);
+        Object code = map.get("code");
+        Object checkCode=session.getAttribute("checkCode");
+        if (!StringUtils.isEmpty(map.get("code"))
+                && code.equals(checkCode)) {
+            User sysUser = new User();
+            sysUser.setUsername((String) map.get("account"));
+            sysUser.setPassword((String) map.get("password"));
 //                sysUser.setPassword(EncryptUtils.MD5_HEX(EncryptUtils.MD5_HEX(password) + account));
-                User loginUser = userService.selectOne(sysUser);
-                if (loginUser != null) {
-
-                    result.setMsg("登录成功");
-                    result.setSysuser(loginUser);
-//                    覆盖错误的loginUser
-                    session.setAttribute("longinUser", loginUser);
-                } else {
-                    result.setMsg("账号或者密码错误");
+            User loginUser = userService.selectOne(sysUser);
+            if (loginUser != null) {
+                result.setMsg("登录成功");
+                result.setSysuser(loginUser);
+                session.setAttribute("userId", loginUser.getId());
+                if(map.get("remember").equals(true)){
+                    session.setAttribute("loginUser", loginUser);
+//                session.setAttribute(loginUser.getUsername(), loginUser);
                 }
+
             } else {
-                result.setMsg("验证码错误");
+                result.setMsg("账号或者密码错误");
             }
         } else {
-            result.setMsg("验证码不能为空");
+            result.setMsg("验证码有误");
         }
 
+        System.out.println("loginUser" + session.getAttribute("loginUser"));
         return result;
     }
 
@@ -65,7 +60,9 @@ public class loginController {
     public Result register(@RequestBody Map<String, Object> map) {
         Result result = new Result();
         User sysUser = new User();
-        if (!StringUtils.isEmpty(map.get("account")) && !StringUtils.isEmpty(map.get("password")) && !StringUtils.isEmpty(map.get("email"))) {
+        if (!StringUtils.isEmpty(map.get("account"))
+                && !StringUtils.isEmpty(map.get("password"))
+                && !StringUtils.isEmpty(map.get("email"))) {
             String account = (String) map.get("account");
             sysUser.setUsername(account);
 //                sysUser.setPassword(EncryptUtils.MD5_HEX(EncryptUtils.MD5_HEX(password) + account));
@@ -116,19 +113,21 @@ public class loginController {
         return result;
     }
 
-    @RequestMapping("loginUser")
+    @RequestMapping("sidebarUser")
     @ResponseBody
     public User getUser(HttpSession session) {
-
-        User longinUser = (User) session.getAttribute("longinUser");
-
-        return longinUser;
+        Integer id = (Integer) session.getAttribute("userId");
+        System.out.println("id:"+session.getAttribute("userId"));
+        User loginUser = userService.selectByPrimaryKey(id);
+        System.out.println("sidebar" + loginUser);
+        return loginUser;
     }
 
     @RequestMapping("loginOut")
     @ResponseBody
     public ModelAndView loginOut(HttpSession session, ModelAndView modelAndView) {
-        session.removeAttribute("longinUser");
+//        Integer id = (Integer) session.getAttribute("userId");
+//        User loginUser = userService.selectByPrimaryKey(id);
         ModelAndView mv = new ModelAndView("redirect:/static/index.html");
         return mv;
     }
