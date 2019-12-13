@@ -73,12 +73,15 @@
                         <td>{{obj.age}}</td>
                         <td>{{obj.desc}}</td>
                         <td>
-                            <input type="submit" value="详细信息" class="btn-xs btn-primary userDetail" @click="userDetail(obj.id)">
+                            <input type="submit" value="详细信息" class="btn-xs btn-primary userDetail"
+                                   @click="userDetail(obj.id)" v-if="obj.isSecret==1">
+                            <input type="submit" disabled="disabled" value="已设私密" class="btn-xs btn-primary userDetail"
+                                   v-else="obj.isSecret==0">
                         </td>
 
                         <td>
 
-                            <input type="checkbox" value="" class="checkbox-template">
+                            <input type="checkbox" value="" class="checkbox-template" >
 
                         </td>
                     </tr>
@@ -94,7 +97,7 @@
                         </li>
                         <li class="active"><a
                                 @Click="listuser(pageInfo.prePage,pageInfo.pageSize)"
-                                :class="pageInfo.pageNum==1?'hidden':''">上一页</a>
+                                v-if="pageInfo.pageNum!=1">上一页</a>
                         </li>
                         <li :class="num==pageInfo.pageNum?'active':''"
                             v-for="num in pageInfo.navigatepageNums"><a
@@ -102,7 +105,7 @@
                         </li>
                         <li class="active"><a
                                 @Click="listuser(pageInfo.nextPage,pageInfo.pageSize)"
-                                :class="pageInfo.pageNum==pageInfo.pages?'hidden':''">下一页</a>
+                                v-if="pageInfo.pageNum!=pageInfo.pageSize">下一页</a>
                         </li>
                         <li><a @Click="listuser(pageInfo.pages,pageInfo.pageSize)">尾页</a>
                         </li>

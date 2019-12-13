@@ -1,7 +1,7 @@
 let vm = new Vue({
     el: '#containermyBox',
     data: {
-        user:{},
+        user: {},
 
     },
     methods: {

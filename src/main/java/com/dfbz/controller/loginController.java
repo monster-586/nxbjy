@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -45,7 +46,7 @@ public class loginController {
                     result.setMsg("登录成功");
                     result.setSysuser(loginUser);
 //                    覆盖错误的loginUser
-                    session.setAttribute("longinUser",loginUser);
+                    session.setAttribute("longinUser", loginUser);
                 } else {
                     result.setMsg("账号或者密码错误");
                 }
@@ -115,4 +116,20 @@ public class loginController {
         return result;
     }
 
+    @RequestMapping("loginUser")
+    @ResponseBody
+    public User getUser(HttpSession session) {
+
+        User longinUser = (User) session.getAttribute("longinUser");
+
+        return longinUser;
+    }
+
+    @RequestMapping("loginOut")
+    @ResponseBody
+    public ModelAndView loginOut(HttpSession session, ModelAndView modelAndView) {
+        session.removeAttribute("longinUser");
+        ModelAndView mv = new ModelAndView("redirect:/static/index.html");
+        return mv;
+    }
 }
