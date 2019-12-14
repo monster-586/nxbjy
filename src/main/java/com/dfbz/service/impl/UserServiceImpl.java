@@ -1,6 +1,7 @@
 package com.dfbz.service.impl;
 
 import com.dfbz.dao.UserMapper;
+import com.dfbz.entity.Result;
 import com.dfbz.entity.User;
 import com.dfbz.service.UserService;
 import com.github.pagehelper.PageHelper;
@@ -53,7 +54,8 @@ public class UserServiceImpl extends tservisceIpm<User> implements UserService {
     }
 
     @Override
-    public int changeFocus(Integer userId, Integer focusUid) {
+    public Result changeFocus(Integer userId, Integer focusUid) {
+        Result result = new Result();
         List<User> focus = userMapper.getFocus(userId);
         int count = 0;
         for (User user : focus) {
@@ -61,13 +63,16 @@ public class UserServiceImpl extends tservisceIpm<User> implements UserService {
                 count++;
             }
         }
-        if (count == focus.size()) {
+        if (count == focus.size()&&userId!=focusUid) {
             int i = userMapper.insertFocus(userId, focusUid);
-            return i;
-        } else {
+            result.setMsg("关注成功");
+        } else if(count != focus.size()){
             int i = userMapper.deleteFocus(userId, focusUid);
-            return i;
+           result.setMsg("取消关注");
+        }else {
+            result.setMsg("不能关注自己");
         }
+        return result;
     }
 
     @Override
@@ -76,7 +81,7 @@ public class UserServiceImpl extends tservisceIpm<User> implements UserService {
             map.put("pageNum", 1);
         }
         if (StringUtils.isEmpty(map.get("pageSize"))) {
-            map.put("pageSize", 5);
+            map.put("pageSize", 3);
         }
         PageHelper.startPage((Integer) map.get("pageNum"), (Integer) map.get("pageSize"));
         List<User> listFocus = userMapper.getFocus(userId);

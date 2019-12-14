@@ -44,7 +44,7 @@
                     <li class="list-group-item">
                         <a @click="userDetail(obj.id)">{{obj.username}}</a>
                         <div style="float: right" class="text-right">
-                            <input type="submit" class="btn btn-danger" value="取消关注">
+                            <input type="submit" class="btn btn-danger" value="取消关注"  @click="changeFocus(obj.id)">
                         </div>
                     </li>
                 </ul>
@@ -64,7 +64,7 @@
                             </li>
                             <li class="active"><a
                                     @Click="getFocus(pageInfo.nextPage,pageInfo.pageSize)"
-                                    v-if="pageInfo.pageNum!=pageInfo.pageSize">下一页</a>
+                                    v-if="pageInfo.pageNum!=pageInfo.pages">下一页</a>
                             </li>
                             <li><a @Click="getFocus(pageInfo.pages,pageInfo.pageSize)">尾页</a>
                             </li>

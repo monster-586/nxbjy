@@ -35,7 +35,7 @@ let vm = new Vue({
                     uId: uid
                 }
             }).then(response => {
-                layer.user = response.data;
+                layer.user = response.data.sysuser;
                 let vm = layer.open({
                     type: 2,
                     title: "详细信息",
@@ -45,7 +45,7 @@ let vm = new Vue({
                         console.log("**********");
                     }
                 })
-                this.user = response.data;
+                // this.user = response.data;
             }).catch(function (error) {
                 console.log(error)
             })
@@ -59,7 +59,6 @@ let vm = new Vue({
                 }
             }).then(response => {
                 layer.msg(response.data.msg);
-
             }).catch(function (error) {
                 console.log(error)
             })

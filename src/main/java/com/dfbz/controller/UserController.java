@@ -33,8 +33,14 @@ public class UserController {
 
     @RequestMapping("userDetail")
     @ResponseBody
-    public User userDetail(Integer uId) {
-        return userService.userDetail(uId);
+    public Result userDetail(Integer uId) {
+        Result result = new Result();
+        User user = userService.userDetail(uId);
+        result.setSysuser(user);
+        if(user.getIsSecret().equals("0")){
+            result.setMsg("对方已设私密");
+        }
+        return result;
     }
 
     //
@@ -49,15 +55,8 @@ public class UserController {
     @RequestMapping("changeFocus")
     @ResponseBody
     public Result selectByCondition(Integer FocusUid, HttpSession session) {
-            System.out.println(FocusUid);
-        Result result = new Result();
-        result.setMsg("关注取消");
         Integer userId = (Integer) session.getAttribute("userId");
-        System.out.println(userId);
-        int i = userService.changeFocus(userId, FocusUid);
-        if (i > 0) {
-            result.setMsg("关注成功");
-        }
+        Result result = userService.changeFocus(userId, FocusUid);
         return result;
 
     }

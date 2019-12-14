@@ -79,9 +79,9 @@
                                    v-else="obj.isSecret==0">
                         </td>
 
-                        <td>
+                        <td @change="changeFocus(obj.id)">
 
-                            <input type="checkbox" v-model="obj.focus==1" class="checkbox-template" @change="changeFocus(obj.id)">
+                            <input type="checkbox" v-model="obj.focus==1" class="checkbox-template">
 
                         </td>
                     </tr>
@@ -105,7 +105,7 @@
                         </li>
                         <li class="active"><a
                                 @Click="listuser(pageInfo.nextPage,pageInfo.pageSize)"
-                                v-if="pageInfo.pageNum!=pageInfo.pageSize">下一页</a>
+                                v-if="pageInfo.pageNum!=pageInfo.pages">下一页</a>
                         </li>
                         <li><a @Click="listuser(pageInfo.pages,pageInfo.pageSize)">尾页</a>
                         </li>

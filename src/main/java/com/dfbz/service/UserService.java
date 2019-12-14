@@ -1,5 +1,6 @@
 package com.dfbz.service;
 
+import com.dfbz.entity.Result;
 import com.dfbz.entity.User;
 import com.github.pagehelper.PageInfo;
 
@@ -15,7 +16,7 @@ public interface UserService extends tservice<User> {
 
     User userDetail(Integer uId);
 
-    int changeFocus(Integer userId, Integer focusUid);
+    Result changeFocus(Integer userId, Integer focusUid);
 
     PageInfo<User> getFocus(Map<String, Object> map, Integer userId);
 }
