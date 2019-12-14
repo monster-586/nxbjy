@@ -25,7 +25,7 @@
     </nav>
 </header>
 
-<div class="d-flex align-items-stretch">
+<div class="d-flex align-items-stretch" id="containermyBox">
     <!-- Sidebar Navigation-->
     <nav id="sidebar">
         <!-- Sidebar Header-->
@@ -40,56 +40,37 @@
         <section class="no-padding-bottom">
 
             <div class="list-group myList">
-                <ul>
+                <ul v-for="obj in pageInfo.list">
                     <li class="list-group-item">
-                        <a href="user_detail.html">小东</a>
-                        <div style="float: right" class="text-right">
-                            <input type="submit" class="btn btn-danger" value="取消关注">
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="user_detail.html">小标</a>
-                        <div style="float: right" class="text-right">
-                            <input type="submit" class="btn btn-danger" value="取消关注">
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="user_detail.html">小艾</a>
-                        <div style="float: right" class="text-right">
-                            <input type="submit" class="btn btn-danger" value="取消关注">
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="user_detail.html">小赵</a>
-                        <div style="float: right" class="text-right">
-                            <input type="submit" class="btn btn-danger" value="取消关注">
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="user_detail.html">小王</a>
+                        <a @click="userDetail(obj.id)">{{obj.username}}</a>
                         <div style="float: right" class="text-right">
                             <input type="submit" class="btn btn-danger" value="取消关注">
                         </div>
                     </li>
                 </ul>
                 <nav class="text-center" aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <div>
+
+                        <div class="pagination no-margin pull-right clearfix">
+                            <li><a @Click="getFocus(1,pageInfo.pageSize)">首页</a>
+                            </li>
+                            <li class="active"><a
+                                    @Click="getFocus(pageInfo.prePage,pageInfo.pageSize)"
+                                    v-if="pageInfo.pageNum!=1">上一页</a>
+                            </li>
+                            <li :class="num==pageInfo.pageNum?'active':''"
+                                v-for="num in pageInfo.navigatepageNums"><a
+                                    @click="getFocus(num,pageInfo.pageSize)">{{num}}</a>
+                            </li>
+                            <li class="active"><a
+                                    @Click="getFocus(pageInfo.nextPage,pageInfo.pageSize)"
+                                    v-if="pageInfo.pageNum!=pageInfo.pageSize">下一页</a>
+                            </li>
+                            <li><a @Click="getFocus(pageInfo.pages,pageInfo.pageSize)">尾页</a>
+                            </li>
+                        </div>
+
+                    </div>
                 </nav>
             </div>
         </section>
@@ -114,6 +95,13 @@
 <script src="static/js/charts-home.js"></script>
 <script src="static/js/front.js"></script>
 <script src="static/js/custom.js"></script>
+
+<script src="static/vue/vue.js"></script>
+<script src="static/vue/axios.js"></script>
+<script src="static/layer/layer.js"></script>
+<script src="static/ztree/jquery.ztree.all-3.5.min.js"></script>
+
+<script src="static/js/user/focusUser.js"></script>
 
 <script>
     $(function () {

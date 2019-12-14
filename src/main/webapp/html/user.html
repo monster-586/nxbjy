@@ -81,7 +81,7 @@
 
                         <td>
 
-                            <input type="checkbox" value="" class="checkbox-template" >
+                            <input type="checkbox" v-model="obj.focus==1" class="checkbox-template" @change="changeFocus(obj.id)">
 
                         </td>
                     </tr>

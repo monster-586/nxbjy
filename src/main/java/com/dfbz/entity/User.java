@@ -95,8 +95,10 @@ public class User {
      */
     @Column(name = "dept_id")
     private Integer deptId;
+
+    //1为已关注 0为未关注
     @Transient
-    private Integer focus;
+    private Integer focus=0;
 
     public Integer getFocus() {
         return focus;
@@ -411,6 +413,7 @@ public class User {
                 ", isSecret='" + isSecret + '\'' +
                 ", deptName='" + deptName + '\'' +
                 ", deptId=" + deptId +
+                ", focus=" + focus +
                 '}';
     }
 }

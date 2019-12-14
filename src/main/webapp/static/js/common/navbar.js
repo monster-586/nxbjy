@@ -1,4 +1,4 @@
-let em = new Vue({
+let en = new Vue({
     el: '#loginOutDiv',
     data: {
     },
@@ -8,7 +8,9 @@ let em = new Vue({
                 url: 'login/loginOut',
                 method: 'get',
             }).
-            then().
+            then(response => {
+                location.href = 'static/index.html'
+            }).
             catch(function (error) {
                 console.log(error)
             })

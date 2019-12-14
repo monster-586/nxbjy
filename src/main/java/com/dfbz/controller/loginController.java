@@ -9,11 +9,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -26,6 +22,13 @@ public class loginController {
     @ResponseBody
     public Result checkAccount(@RequestBody Map<String, Object> map, HttpSession session) {
         Result result = new Result();
+        System.out.println(map.get("remember"));
+      User sessionUser = (User) session.getAttribute("loginUser");
+        if(sessionUser!=null){
+            result.setSysuser(sessionUser);
+            result.setMsg("登录成功");
+            return result;
+        }
         Object code = map.get("code");
         Object checkCode=session.getAttribute("checkCode");
         if (!StringUtils.isEmpty(map.get("code"))
@@ -41,7 +44,9 @@ public class loginController {
                 session.setAttribute("userId", loginUser.getId());
                 if(map.get("remember").equals(true)){
                     session.setAttribute("loginUser", loginUser);
+
 //                session.setAttribute(loginUser.getUsername(), loginUser);
+//                    System.out.println("remember"+map.get("remember"));
                 }
 
             } else {
@@ -117,18 +122,29 @@ public class loginController {
     @ResponseBody
     public User getUser(HttpSession session) {
         Integer id = (Integer) session.getAttribute("userId");
-        System.out.println("id:"+session.getAttribute("userId"));
+//        System.out.println("id:"+session.getAttribute("userId"));
         User loginUser = userService.selectByPrimaryKey(id);
-        System.out.println("sidebar" + loginUser);
+//        System.out.println("sidebar" + loginUser);
         return loginUser;
     }
 
     @RequestMapping("loginOut")
     @ResponseBody
-    public ModelAndView loginOut(HttpSession session, ModelAndView modelAndView) {
-//        Integer id = (Integer) session.getAttribute("userId");
-//        User loginUser = userService.selectByPrimaryKey(id);
-        ModelAndView mv = new ModelAndView("redirect:/static/index.html");
-        return mv;
+    public void loginOut(HttpSession session){
+        User loginUser = (User) session.getAttribute("loginUser");
+        if(loginUser!=null){
+            session.removeAttribute("loginUser");
+        }
+
     }
+//    public ModelAndView loginOut(HttpSession session, ModelAndView modelAndView) {
+////        Integer id = (Integer) session.getAttribute("userId");
+////        User loginUser = userService.selectByPrimaryKey(id);
+//        ModelAndView mv = new ModelAndView("redirect:/static/index.html");
+//        return mv;
+//    }
+
+
+
+
 }

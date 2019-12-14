@@ -2,27 +2,21 @@ let vm = new Vue({
     el: '#containermyBox',
     data: {
         map: {
-            realname: '',
             pageNum: 1,
-            pageSize: 3,
+            pageSize: 5,
         },
-        uId: '',
-        user: {},
-        pageInfo: {},
-        focusUser: {}
+        pageInfo:{}
+
     },
     methods: {
-        listuser: function (pageNum, pageSize) {
-            this.map.pageNum = pageNum;
-            this.map.pageSize = pageSize;
-            // console.log(this.map)
+        getFocus: function (pageNum, pageSize) {
             axios({
-                url: 'manager/user/list',
+                url: 'manager/user/getFocus',
                 method: 'post',
                 data: this.map
             }).then(response => {
                 this.pageInfo = response.data;
-                // console.log(this.pageInfo.list)
+                console.log(this.pageInfo.list)
             }).catch(function (error) {
                 console.log(error)
             })
@@ -50,28 +44,11 @@ let vm = new Vue({
                 console.log(error)
             })
         },
-        changeFocus: function (fUId) {
-            axios({
-                url: 'manager/user/changeFocus',
-                method: 'get',
-                params: {
-                    FocusUid: fUId
-                }
-            }).then(response => {
-                layer.msg(response.data.msg);
-
-            }).catch(function (error) {
-                console.log(error)
-            })
-        }
-
     },
     created: function () {
-        this.listuser(this.map.pageNum, this.map.pageSize);
         this.getFocus();
     },
     mounted: function () {
-
     }
 
 });

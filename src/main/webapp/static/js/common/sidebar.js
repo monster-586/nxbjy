@@ -1,4 +1,4 @@
-let em = new Vue({
+let e = new Vue({
     el: '#loginSidebar',
     data: {
         loginUser:{}
@@ -7,6 +7,16 @@ let em = new Vue({
         getUser:function () {
             axios({
                 url: 'login/sidebarUser',
+                method: 'get',
+            }).then(response => {
+                this.loginUser = response.data;
+            }).catch(function (error) {
+                console.log(error)
+            })
+        },
+        changePic:function () {
+            axios({
+                url: 'login/changePic',
                 method: 'get',
             }).then(response => {
                 this.loginUser = response.data;

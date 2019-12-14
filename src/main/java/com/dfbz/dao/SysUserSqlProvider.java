@@ -14,4 +14,5 @@ public class SysUserSqlProvider {
         }
         return sb.toString();
     }
+
 }

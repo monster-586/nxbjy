@@ -6,12 +6,12 @@ let vm = new Vue({
             account: '',
             password: '',
             code: '',
-            remember:false
+            remember:true
         }
     },
     methods: {
         changeCode: function (e) {
-            console.log(e.target.src)
+            // console.log(e.target.src)
             e.target.src = "getCode.jpg?" + new Date();
         },
         checkLogin: function () {
@@ -54,6 +54,7 @@ let vm = new Vue({
             });
         },
         checkbox:function () {
+            console.log(this.map)
             this.map.remember=!this.map.remember
         }
 

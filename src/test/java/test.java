@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -53,7 +54,7 @@ public class test {
         Map<String, Object> map = new HashMap<>();
         map.put("pageNum",1);
         map.put("pageSize",5);
-        PageInfo<User> userPageInfo = userService.selectByCondition(map);
+        PageInfo<User> userPageInfo = userService.selectByCondition(map,1);
         System.out.println(userPageInfo.getList());
     }
 
@@ -70,9 +71,16 @@ public class test {
 
     @Autowired
     UserMapper userMapper;
+//    @Test
+//    public void focus(){
+//        int focus = userMapper.focus(1);
+//        System.out.println(focus);
+//    }
+
     @Test
-    public void focus(){
-        int focus = userMapper.focus(1);
-        System.out.println(focus);
+    public void Focus(){
+        int i = userMapper.insertFocus(1, 100);
+//        int j = userMapper.deleteFocus(1, 100);
+        System.out.println(i);
     }
 }
