@@ -23,6 +23,21 @@ let e = new Vue({
             }).catch(function (error) {
                 console.log(error)
             })
+        },
+        userDetail: function () {
+            // console.log(this.loginUser.id);
+                layer.uId = this.loginUser.id;
+                let vm = layer.open({
+                    type: 2,
+                    title: "详细信息",
+                    content: 'html/user_look.html',
+                    area: ['60%', '80%'],
+                    end: () => {
+                        console.log("**********");
+                    }
+                })
+
+
         }
 
     },

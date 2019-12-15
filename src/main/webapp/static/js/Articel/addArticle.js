@@ -2,17 +2,16 @@ let vm = new Vue({
     el: '#containermyBox',
     data: {
         map: {
-            account: '',
-            password: '',
-            email: '',
-            // comfpassword:''
+            title: '',
+            content: '',
+
         }
     },
     methods: {
-        register: function () {
+        save: function () {
             console.log(this.map)
             axios({
-                url: 'login/register',
+                url: 'manager/article/save',
                 method: 'post',
                 data: this.map
             }).then(response => {

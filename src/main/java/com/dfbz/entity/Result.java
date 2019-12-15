@@ -4,6 +4,15 @@ public class Result {
     private String msg;
     private User sysuser;
     private Integer type=0 ;
+    private Article article;
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
 
     public Integer getType() {
         return type;

@@ -35,7 +35,7 @@ let vm = new Vue({
                 type: 2,
                 title: "注册",
                 content: 'html/register.html',
-                area: ['80%', '80%'],
+                area: ['60%', '80%'],
                 end: () => {
                     console.log("**********");
                 }
@@ -47,7 +47,7 @@ let vm = new Vue({
                 type: 2,
                 title: "忘记密码",
                 content: 'html/forget.html',
-                area: ['80%', '80%'],
+                area: ['60%', '80%'],
                 end: () => {
                     console.log("**********");
                 }

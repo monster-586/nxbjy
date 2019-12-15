@@ -96,6 +96,18 @@ public class User {
     @Column(name = "dept_id")
     private Integer deptId;
 
+    //粉丝数
+    @Transient
+    private Integer focusCount;
+
+    public Integer getFocusCount() {
+        return focusCount;
+    }
+
+    public void setFocusCount(Integer focusCount) {
+        this.focusCount = focusCount;
+    }
+
     //1为已关注 0为未关注
     @Transient
     private Integer focus=0;

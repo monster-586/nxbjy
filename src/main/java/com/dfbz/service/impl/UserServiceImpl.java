@@ -1,6 +1,8 @@
 package com.dfbz.service.impl;
 
+import com.dfbz.dao.DeptMapper;
 import com.dfbz.dao.UserMapper;
+import com.dfbz.entity.Dept;
 import com.dfbz.entity.Result;
 import com.dfbz.entity.User;
 import com.dfbz.service.UserService;
@@ -10,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -46,9 +47,9 @@ public class UserServiceImpl extends tservisceIpm<User> implements UserService {
 
     @Override
     public User userDetail(Integer uId) {
-        int focus = userMapper.focusCount(uId);
+        int focusCount = userMapper.focusCount(uId);
         User user = userMapper.selectByPrimaryKey(uId);
-        user.setFocus(focus);
+        user.setFocusCount(focusCount);
         return user;
 
     }
@@ -87,6 +88,25 @@ public class UserServiceImpl extends tservisceIpm<User> implements UserService {
         List<User> listFocus = userMapper.getFocus(userId);
         PageInfo<User> pageInfo = new PageInfo<>(listFocus);
         return pageInfo;
+    }
+@Autowired
+    DeptMapper deptMapper;
+    @Override
+    public Result updateUser(User user) {
+        Result result = new Result();
+        result.setMsg("保存失败");
+        if("true".equals(user.getIsSecret())){
+            user.setIsSecret("0");
+        }else {
+            user.setIsSecret("1");
+        }
+        Dept dept = deptMapper.selectByPrimaryKey(user.getDeptId());
+        user.setDeptName(dept.getName());
+        int i = userMapper.updateByPrimaryKey(user);
+        if (i>0){
+            result.setMsg("保存成功");
+        }
+        return result;
     }
 
 

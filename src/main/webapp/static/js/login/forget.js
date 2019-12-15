@@ -33,6 +33,10 @@ let vm = new Vue({
             }).catch(function (error) {
                 console.log(error)
             })
+        },
+        cancle: function () {
+            let index = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(index);
         }
     },
     created: function () {

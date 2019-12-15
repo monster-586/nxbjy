@@ -67,7 +67,6 @@ let vm = new Vue({
     },
     created: function () {
         this.listuser(this.map.pageNum, this.map.pageSize);
-        this.getFocus();
     },
     mounted: function () {
 

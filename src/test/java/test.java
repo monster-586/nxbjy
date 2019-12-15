@@ -1,8 +1,14 @@
 import com.dfbz.Utils.Email;
 import com.dfbz.config.SpringMybatis;
+import com.dfbz.dao.ArticleMapper;
+import com.dfbz.dao.MeetingMapper;
 import com.dfbz.dao.UserMapper;
+import com.dfbz.entity.Article;
+import com.dfbz.entity.Meeting;
 import com.dfbz.entity.User;
 
+import com.dfbz.service.ArticleService;
+import com.dfbz.service.MeetingService;
 import com.dfbz.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.junit.Test;
@@ -79,8 +85,34 @@ public class test {
 
     @Test
     public void Focus(){
-        int i = userMapper.insertFocus(1, 100);
-//        int j = userMapper.deleteFocus(1, 100);
-        System.out.println(i);
+       Map<String, Object> map = new HashMap<>();
+       map.put("uId",1);
+       map.put("title","我");
+        List<Article> list = articleMapper.getFavoriteByCondition(map);
+        for (Article article : list) {
+            System.out.println("1111"+article);
+        }
     }
+@Autowired
+ArticleMapper articleMapper;
+    @Test
+    public void getFavorite(){
+        List<User> favorite = articleMapper.getFavorite(1);
+        for (User user : favorite) {
+            System.out.println(user);
+        }
+
+    }
+
+    @Autowired
+    MeetingService meetingMapper;
+    @Test
+    public void listMeeting(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("title","a");
+        map.put("status",0);
+        PageInfo<Meeting> meetings = meetingMapper.selectByCondition(map);
+        System.out.println(meetings.getList());
+    }
+
 }

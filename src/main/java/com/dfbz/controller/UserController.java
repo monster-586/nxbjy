@@ -54,12 +54,12 @@ public class UserController {
 //    }
     @RequestMapping("changeFocus")
     @ResponseBody
-    public Result selectByCondition(Integer FocusUid, HttpSession session) {
+    public Result changeFocus(Integer FocusUid, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");
         Result result = userService.changeFocus(userId, FocusUid);
         return result;
-
     }
+
     @RequestMapping("getFocus")
     @ResponseBody
     public PageInfo<User> getFocus(@RequestBody Map<String, Object> map,HttpSession session){
@@ -67,4 +67,12 @@ public class UserController {
         PageInfo<User> listFocus=userService.getFocus(map,userId);
         return listFocus;
     }
+    @RequestMapping("updateUser")
+    @ResponseBody
+    public Result updateUser(@RequestBody User user){
+        System.out.println("true".equals(user.getIsSecret()));
+        Result result =userService.updateUser(user);
+        return result;
+    }
+
 }

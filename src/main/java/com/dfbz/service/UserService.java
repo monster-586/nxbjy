@@ -19,4 +19,6 @@ public interface UserService extends tservice<User> {
     Result changeFocus(Integer userId, Integer focusUid);
 
     PageInfo<User> getFocus(Map<String, Object> map, Integer userId);
+
+    Result updateUser(User user);
 }

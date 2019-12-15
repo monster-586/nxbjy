@@ -42,7 +42,7 @@
             <div class="list-group myList">
                 <ul v-for="obj in pageInfo.list">
                     <li class="list-group-item">
-                        <a @click="userDetail(obj.id)">{{obj.username}}</a>
+                        <a @click="userDetail(obj.id)">{{obj.realName}}</a>
                         <div style="float: right" class="text-right">
                             <input type="submit" class="btn btn-danger" value="取消关注"  @click="changeFocus(obj.id)">
                         </div>

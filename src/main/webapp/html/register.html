@@ -33,29 +33,33 @@
             </div>
         </div>
         <div class="form-bottom">
-            <span role="form"  method="post" class="login-form">
+            <span role="form" method="post" class="login-form">
 
                 <!--上面的输入框尽可能不需要外边距，使用row解决-->
                 <div class="row">
                     <div class="form-group">
                         <label class="sr-only" for="form-username">Email</label>
-                        <input type="text" name="form-email" placeholder="邮箱" class="form-username form-control" v-model="map.email"
-                               id="form-email" >
+                        <input type="text" name="form-email" placeholder="邮箱" class="form-username form-control"
+                               v-model="map.email"
+                               id="form-email">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="form-username">Username</label>
-                        <input type="text" name="form-username" placeholder="用户名" class="form-username form-control" v-model="map.account"
+                        <input type="text" name="form-username" placeholder="用户名" class="form-username form-control"
+                               v-model="map.account"
                                id="form-username">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="form-password">Password</label>
-                        <input type="password" name="form-password" placeholder="密码" class="form-password form-control" v-model="map.password"
+                        <input type="password" name="form-password" placeholder="密码" class="form-password form-control"
+                               v-model="map.password"
                                id="form-password">
                     </div>
 
                     <div class="form-group">
                         <label class="sr-only" for="form-password2">Password</label>
-                        <input type="password" name="form-password2" placeholder="确认密码" class="form-password form-control"
+                        <input type="password" name="form-password2" placeholder="确认密码"
+                               class="form-password form-control"
                                id="form-password2">
                     </div>
                 </div>
@@ -63,13 +67,12 @@
 
 
                 <button class="btn" @click="register">注册</button>
-
-                <div class="row">
-                    <div style="padding: 10px 25px">
-                        <!--<div style="display: inline-block;float: left" class="text-left"><a href=" static/index.html">返回登录</a></div>-->
-
-                    </div>
-                </div>
+                 <button class="btn" @click="cancle">取消</button>
+                <!--<div class="row">-->
+                <!--<div style="padding: 10px 25px">-->
+                <!--<button class="btn" @click="cancle">取消</button>-->
+                <!--</div>-->
+                <!--</div>-->
 
             </span>
         </div>

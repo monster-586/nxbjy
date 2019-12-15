@@ -1,25 +1,20 @@
 let vm = new Vue({
     el: '#containermyBox',
     data: {
-        map: {
-            pageNum: 1,
-            pageSize: 3,
-        },
-        pageInfo: {}
+        article: {},
 
     },
     methods: {
-        getFocus: function (pageNum, pageSize) {
-           this.map.pageNum=pageNum;
-           this.map.pageSize=pageSize;
-           console.log(this.map)
+        changeFavorite: function (aId) {
             axios({
-                url: 'manager/user/getFocus',
-                method: 'post',
-                data: this.map
+                url: 'manager/article/changeFavorite',
+                method: 'get',
+                params: {
+                    articleId: aId
+                }
             }).then(response => {
-                this.pageInfo = response.data;
-                // console.log(this.pageInfo.list)
+                layer.msg(response.data.msg);
+
             }).catch(function (error) {
                 console.log(error)
             })
@@ -32,15 +27,15 @@ let vm = new Vue({
                     uId: uid
                 }
             }).then(response => {
-                if (response.data.sysuser.isSecret == 0) {
-                    layer.msg(response.data.msg)
-                } else {
+                if(response.data.sysuser.isSecret==0){
+                    layer.msg("对方已私密")
+                }else {
                     layer.user = response.data.sysuser;
                     let vm = layer.open({
                         type: 2,
                         title: "详细信息",
                         content: 'html/user_detail.html',
-                        area: ['60%', '80%'],
+                        area: ['100%', '100%'],
                         end: () => {
                             console.log("**********");
                         }
@@ -51,27 +46,13 @@ let vm = new Vue({
                 console.log(error)
             })
         },
-        changeFocus: function (fUId) {
-            axios({
-                url: 'manager/user/changeFocus',
-                method: 'get',
-                params: {
-                    FocusUid: fUId
-                }
-            }).then(response => {
-                this.getFocus();
-                layer.msg(response.data.msg);
-
-
-            }).catch(function (error) {
-                console.log(error)
-            })
-        }
     },
     created: function () {
-        this.getFocus();
+
     },
     mounted: function () {
+        this.article = parent.layer.article;
+        console.log(this.article)
     }
 
 });

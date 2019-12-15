@@ -20,12 +20,12 @@
 </head>
 <body>
 <header class="header">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" id="navbar">
 
     </nav>
 </header>
 
-<div class="d-flex align-items-stretch">
+<div class="d-flex align-items-stretch" id="containermyBox">
     <!-- Sidebar Navigation-->
     <nav id="sidebar">
         <!-- Sidebar Header-->
@@ -40,47 +40,18 @@
         </div>
         <section class="no-padding-bottom">
 
-            <div class="list-group subject">
-                <div class="list-group-item">
-                    <a href="#deptDetail1" data-toggle="collapse">研发部 &nbsp;3人</a>
-                    <div id="deptDetail1" class="collapse deptDetail">
+            <ul class="list-group subject" v-for="obj in pageInfo.list">
+                <li class="list-group-item">
+                    <a href="#deptDtial" data-toggle="collapse">{{obj.name}} &nbsp;3人</a>
+                    <div id="deptDtial" class="collapse deptDetail">
                         <ul>
                             <li>
                                 <a href="#">小东</a>
                             </li>
-                            <li>
-                                <a href="#">小方</a>
-                            </li>
-                            <li>
-                                <a href="#">小标</a>
-                            </li>
                         </ul>
                     </div>
-                </div>
-                <div class="list-group-item">
-                    <a href="#deptDetail2" data-toggle="collapse">行政部 &nbsp;2人</a>
-                    <div id="deptDetail2" class="collapse deptDetail">
-                        <ul>
-                            <li>
-                                <a href="#">小标</a>
-                            </li>
-                            <li>
-                                <a href="#">小准</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="list-group-item">
-                    <a href="#deptDetail3" data-toggle="collapse">总裁办公室 &nbsp;1人</a>
-                    <div id="deptDetail3" class="collapse deptDetail">
-                        <ul>
-                            <li>
-                                <a href="#">东方标准</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                </li>
+            </ul>
         </section>
 
         <footer class="footer">
@@ -104,6 +75,12 @@
 <script src="static/js/front.js"></script>
 <script src="static/js/custom.js"></script>
 <script src="static/bootstrap/js/bootstrap-collapse.js"></script>
+
+<script src="static/vue/vue.js"></script>
+<script src="static/vue/axios.js"></script>
+<script src="static/layer/layer.js"></script>
+<script src="static/ztree/jquery.ztree.all-3.5.min.js"></script>
+<script src="static/js/metting/deptUser.js"></script>
 
 <script>
     $(function () {

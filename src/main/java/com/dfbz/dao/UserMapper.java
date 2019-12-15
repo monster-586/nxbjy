@@ -1,5 +1,6 @@
 package com.dfbz.dao;
 
+
 import com.dfbz.entity.User;
 import org.apache.ibatis.annotations.*;
 import tk.mybatis.mapper.common.Mapper;
@@ -12,7 +13,7 @@ public interface UserMapper extends Mapper<User> {
     @SelectProvider(type = SysUserSqlProvider.class, method = "selectByCondition")
     List<User> selectByCondition(Map<String, Object> pam);
 
-    @Select("select count(1) focus from userfocus where user_id=#{uId}")
+    @Select("select count(1) focus from userfocus where user_focus_id=#{uId}")
     int focusCount(Integer uId);
 
     @Select(" select us.* from userfocus uf " +
@@ -28,4 +29,7 @@ public interface UserMapper extends Mapper<User> {
 
     @Insert("INSERT INTO `userfocus`(`user_id`, `user_focus_id`) VALUES (#{userId}, #{FocusUid}) ")
     int insertFocus(@Param("userId") Integer userId, @Param("FocusUid") Integer FocusUid);
-        }
+
+    @Select("select * from user where dept_id=#{deptId}")
+    List<User> selectDeptUser(Integer deptId);
+}

@@ -21,12 +21,12 @@
 </head>
 <body>
 <header class="header">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" id="navbar">
 
     </nav>
 </header>
 
-<div class="d-flex align-items-stretch">
+<div class="d-flex align-items-stretch" id="containermyBox">
     <!-- Sidebar Navigation-->
     <nav id="sidebar">
         <!-- Sidebar Header-->
@@ -46,93 +46,63 @@
             <div class="list-group">
                 <!--搜索文章的条件-->
                 <div class="myTitle">
-                    <form class="form-inline">
+                    <span class="form-inline">
                         <div class="form-group">
                             <label for="inlineFormInput" class="sr-only">Name</label>
-                            <input id="inlineFormInput" type="text" placeholder="按标题名字查找" class="mr-sm-3 form-control">
+                            <input id="inlineFormInput" type="text" placeholder="按标题名字查找" class="mr-sm-3 form-control" v-model="map.title">
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="查询" class="btn btn-primary mr-sm-3 ">
+                            <input type="submit" value="查询" class="btn btn-primary mr-sm-3 " @click="listMeeting(1,pageInfo.pageSize)">
                         </div>
                         <!--选择状态-->
                         <div class="form-group">
-                            <select name="dep" class="form-control selectpicker" id="status">
-                                <option>请选择状态</option>
-                                <option>未开始</option>
-                                <option>正在进行</option>
-                                <option>已结束</option>
+                            <select name="dep" class="form-control selectpicker" id="status" v-model="map.status" @change="listMeeting(1,pageInfo.pageSize)">
+                                <option value="">请选择状态</option>
+                                <option value="0">未开始</option>
+                                <option value="1">正在进行</option>
+                                <option value="2">已结束</option>
                             </select>
                         </div>
-                    </form>
+                    </span>
 
                     <input id = "addMeet" type="submit" value="发布会议" class="btn btn-primary">
 
 
                 </div>
 
-                <ul class="myList">
+                <ul class="myList" v-for="obj in pageInfo.list">
                     <li class="list-group-item">
                         <div style="float: right;">
-                            <span><strong>状态：</strong>正在进行</span>
+                            <span><strong>状态：</strong>{{obj.status==0?'未开始':obj.status==1?'正在进行':'已结束'}}</span>
                         </div>
-                        <a href="meeting_detail.html">关于《小标会议平台》项目部分模块功能升级</a>
-                        <p class="h6"><strong>部门：</strong>研发部</p>
-                        <p class="h6"><strong>开始时间：</strong>2019-10-30 15:40</p>
-                        <p style="white-space:nowrap;overflow:hidden;text-overflow: ellipsis">
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级</p>
+                        <a href="html/meeting_detail.html">{{obj.title}}</a>
+                        <p class="h6"><strong>部门：</strong>{{obj.deptName}}</p>
+                        <p class="h6"><strong>开始时间：</strong>{{obj.startTime}}</p>
+                        <p style="white-space:nowrap;overflow:hidden;text-overflow: ellipsis">{{obj.content}}</p>
                     </li>
 
-                    <li class="list-group-item">
-                        <div style="float: right;">
-                            <span><strong>状态：</strong>正在进行</span>
-                        </div>
-                        <a href="meeting_detail.html">关于《小标会议平台》项目部分模块功能升级</a>
-                        <p class="h6"><strong>部门：</strong>研发部</p>
-                        <p class="h6"><strong>开始时间：</strong>2019-10-30 15:40</p>
-                        <p style="white-space:nowrap;overflow:hidden;text-overflow: ellipsis">
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级</p>
-                    </li>
-
-                    <li class="list-group-item">
-                        <div style="float: right;">
-                            <span><strong>状态：</strong>正在进行</span>
-                        </div>
-                        <a href="meeting_detail.html">关于《小标会议平台》项目部分模块功能升级</a>
-                        <p class="h6"><strong>部门：</strong>研发部</p>
-                        <p class="h6"><strong>开始时间：</strong>2019-10-30 15:40</p>
-                        <p style="white-space:nowrap;overflow:hidden;text-overflow: ellipsis">
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：
-                            小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级：小标会议平台有如下模块需要升级</p>
-                    </li>
 
                 </ul>
 
                 <nav class="text-center" aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
+                    <div class="pagination no-margin pull-right clearfix">
+                        <li><a @Click="listMeeting(1,pageInfo.pageSize)">首页</a>
                         </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
+                        <li class="active"><a
+                                @Click="listMeeting(pageInfo.prePage,pageInfo.pageSize)"
+                                v-if="pageInfo.pageNum!=1">上一页</a>
                         </li>
-                    </ul>
+                        <li :class="num==pageInfo.pageNum?'active':''"
+                            v-for="num in pageInfo.navigatepageNums"><a
+                                @click="listMeeting(num,pageInfo.pageSize)">{{num}}</a>
+                        </li>
+                        <li class="active"><a
+                                @Click="listMeeting(pageInfo.nextPage,pageInfo.pageSize)"
+                                v-if="pageInfo.pageNum!=pageInfo.pages">下一页</a>
+                        </li>
+                        <li><a @Click="listMeeting(pageInfo.pages,pageInfo.pageSize)">尾页</a>
+                        </li>
+                    </div>
                 </nav>
             </div>
         </section>
@@ -159,7 +129,11 @@
 <script src="static/js/front.js"></script>
 <script src="static/js/custom.js"></script>
 
-
+<script src="static/vue/vue.js"></script>
+<script src="static/vue/axios.js"></script>
+<script src="static/layer/layer.js"></script>
+<script src="static/ztree/jquery.ztree.all-3.5.min.js"></script>
+<script src="static/js/metting/listMeeting.js"></script>
 <script>
     $(function () {
         $("#navbar").load("html/commons/navbar.html");
