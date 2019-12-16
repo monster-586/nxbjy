@@ -48,9 +48,9 @@ public class ArticleServiceImpl extends tservisceIpm<Article> implements Article
 
 
     @Override
-    public Result changeFocus(Integer userId, Integer articleId) {
+    public Result changeFavorite(Integer userId, Integer articleId) {
         Result result = new Result();
-        List<User> favoriteUser = articleMapper.getFavorite(userId);
+        List<User> favoriteUser = articleMapper.getFavorite(articleId);
         int count = 0;
         for (User user : favoriteUser) {
             if (user.getId() != userId) {
@@ -60,8 +60,8 @@ public class ArticleServiceImpl extends tservisceIpm<Article> implements Article
         if (count == favoriteUser.size()) {
             articleMapper.insertFavorite(userId,articleId);
             result.setMsg("收藏成功");
-        } else if(count != favoriteUser.size()){
-            int i = articleMapper.deleteFavorite(userId, articleId);
+        } if(count != favoriteUser.size()){
+          articleMapper.deleteFavorite(userId, articleId);
             result.setMsg("取消收藏");
         }
         return result;

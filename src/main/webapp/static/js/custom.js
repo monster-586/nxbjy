@@ -18,10 +18,10 @@ $(function () {
         window.location.href = '../html/user_detail.html'
     });
 
-    //发布会议跳转链接
-    $("#addMeet").click(function () {
-        window.location.href = '../html/meeting_add.html'
-    });
+    // //发布会议跳转链接
+    // $("#addMeet").click(function () {
+    //     window.location.href = 'html/meeting_add.html'
+    // });
 
     //添加文章跳转链接
     $("#addArt").click(function () {

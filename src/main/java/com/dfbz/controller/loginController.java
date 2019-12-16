@@ -91,7 +91,7 @@ public class loginController {
 
     @RequestMapping("forget")
     @ResponseBody
-    public Result check(@RequestBody Map<String, Object> map, HttpSession session) {
+    public Result forget(@RequestBody Map<String, Object> map, HttpSession session) {
         Result result = new Result();
         Integer emailCode = (Integer) session.getAttribute("emailCode");
         String code = (String) map.get("code");

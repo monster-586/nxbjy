@@ -48,9 +48,9 @@ public class ArticleController {
 
     @RequestMapping("changeFavorite")
     @ResponseBody
-    public Result changeFocus(Integer articleId, HttpSession session) {
+    public Result changeFavorite(Integer articleId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");
-        Result result = articleService.changeFocus(userId, articleId);
+        Result result = articleService.changeFavorite(userId, articleId);
         return result;
     }
 

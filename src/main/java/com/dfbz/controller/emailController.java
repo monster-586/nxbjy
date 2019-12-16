@@ -25,7 +25,7 @@ public class emailController {
         Result result = new Result();
         result.setMsg("邮箱不能为空！");
         if (!StringUtils.isEmpty(email)) {
-            System.out.println(email);
+
             Integer code = (int) ((Math.random() * 9 + 1) * 1000);
             Email.send(email, code);
             session.setAttribute("emailCode", code);

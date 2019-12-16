@@ -39,7 +39,7 @@ let vm = new Vue({
                     type: 2,
                     title: "文章详情",
                     content: 'html/article_detail.html',
-                    area: ['70%', '90%'],
+                    area: ['60%', '80%'],
                     end: () => {
                         console.log("**********");
                     }

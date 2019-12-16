@@ -16,6 +16,7 @@ let vm = new Vue({
                 layer.msg(response.data.msg);
 
             }).catch(function (error) {
+                this.userDetail();
                 console.log(error)
             })
         },
@@ -37,6 +38,7 @@ let vm = new Vue({
                         content: 'html/user_detail.html',
                         area: ['100%', '100%'],
                         end: () => {
+
                             console.log("**********");
                         }
                     })

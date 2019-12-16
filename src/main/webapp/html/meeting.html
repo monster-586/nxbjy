@@ -65,7 +65,7 @@
                         </div>
                     </span>
 
-                    <input id = "addMeet" type="submit" value="发布会议" class="btn btn-primary">
+                    <input id = "addMeet" type="submit" value="发布会议" class="btn btn-primary" >
 
 
                 </div>
@@ -127,7 +127,7 @@
 <script src="static/vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="static/js/charts-home.js"></script>
 <script src="static/js/front.js"></script>
-<script src="static/js/custom.js"></script>
+<!--<script src="static/js/custom.js"></script>-->
 
 <script src="static/vue/vue.js"></script>
 <script src="static/vue/axios.js"></script>
@@ -139,6 +139,12 @@
         $("#navbar").load("html/commons/navbar.html");
         $("#sidebar").load("html/commons/siber.html");
     })
+
+    $("#addMeet").click(function () {
+        window.location.href = 'html/meeting_add.html'
+    });
 </script>
+
+
 </body>
 </html>

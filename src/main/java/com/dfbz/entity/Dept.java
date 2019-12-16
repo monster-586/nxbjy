@@ -2,6 +2,8 @@ package com.dfbz.entity;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.List;
 
 @Table(name = "dept")
 public class Dept {
@@ -15,6 +17,26 @@ public class Dept {
      * 部门名称
      */
     private String name;
+@Transient
+    private Integer userCount;
+
+    public Integer getUserCount() {
+        return userCount;
+    }
+
+    public void setUserCount(Integer userCount) {
+        this.userCount = userCount;
+    }
+
+    private List<User> listUser;
+
+    public List<User> getListUser() {
+        return listUser;
+    }
+
+    public void setListUser(List<User> listUser) {
+        this.listUser = listUser;
+    }
 
     /**
      * 获取部门id
@@ -50,5 +72,15 @@ public class Dept {
      */
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Dept{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userCount=" + userCount +
+                ", listUser=" + listUser +
+                '}';
     }
 }

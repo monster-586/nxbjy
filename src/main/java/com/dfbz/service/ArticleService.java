@@ -17,7 +17,7 @@ public interface ArticleService extends tservice<Article> {
 
     List<User> getFavorite(Integer articleId);
 
-    Result changeFocus(Integer userId, Integer articleId);
+    Result changeFavorite(Integer userId, Integer articleId);
 
     int saveArticle(Map<String, Object> map,User user);
 

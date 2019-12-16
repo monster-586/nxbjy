@@ -40,18 +40,36 @@
         </div>
         <section class="no-padding-bottom">
 
-            <ul class="list-group subject" v-for="obj in pageInfo.list">
-                <li class="list-group-item">
-                    <a href="#deptDtial" data-toggle="collapse">{{obj.name}} &nbsp;3人</a>
-                    <div id="deptDtial" class="collapse deptDetail">
-                        <ul>
+            <div class="list-group subject">
+                <div class="list-group-item"  v-for="(obj,index) in pageInfo.list">
+                    <a  :href="'#deptDtial'+index" data-toggle="collapse">{{obj.name}} &nbsp;{{obj.userCount}}人</a>
+                    <div :id="'deptDtial'+index" class="collapse deptDetail">
+                        <ul v-for="user in obj.listUser">
                             <li>
-                                <a href="#">小东</a>
+                                <a @click="userDetail(user.id)">{{user.realName}}</a>
                             </li>
                         </ul>
                     </div>
+                </div>
+            </div>
+            <div class="pagination no-margin pull-right clearfix">
+                <li><a @Click="listDept(1,pageInfo.pageSize)">首页</a>
                 </li>
-            </ul>
+                <li class="active"><a
+                        @Click="listDept(pageInfo.prePage,pageInfo.pageSize)"
+                        v-if="pageInfo.pageNum!=1">上一页</a>
+                </li>
+                <li :class="num==pageInfo.pageNum?'active':''"
+                    v-for="num in pageInfo.navigatepageNums"><a
+                        @click="listDept(num,pageInfo.pageSize)">{{num}}</a>
+                </li>
+                <li class="active"><a
+                        @Click="listDept(pageInfo.nextPage,pageInfo.pageSize)"
+                        v-if="pageInfo.pageNum!=pageInfo.pages">下一页</a>
+                </li>
+                <li><a @Click="listDept(pageInfo.pages,pageInfo.pageSize)">尾页</a>
+                </li>
+            </div>
         </section>
 
         <footer class="footer">
