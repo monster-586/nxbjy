@@ -72,8 +72,8 @@ public class DeptController {
     @RequestMapping("save")
     @ResponseBody
     public Result selectUser(@RequestBody Map<String, Object> map) {
-        Result result = new Result();
-        Result result1 = deptService.insertDept(map);
+
+        Result result = deptService.insertDept(map);
         return result;
     }
 }

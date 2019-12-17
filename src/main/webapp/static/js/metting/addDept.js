@@ -6,7 +6,7 @@ let vm = new Vue({
         map: {
             title: '',
             deptId: '',
-            makeUser: [],
+            makeUser: '',
             startTime: '',
             endTime: '',
             content: ''
@@ -47,13 +47,13 @@ let vm = new Vue({
             this.map.startTime = $("#startTime").val();
             this.map.endTime = $("#endTime").val();
             this.map.content = $("#content").val();
-            console.log(this.map)
+
             axios({
                 url: 'manager/dept/save',
                 method: 'post',
                 data: this.map
             }).then(response => {
-                 layer.msg(response.data);
+                 // layer.msg(response.data.msg);
                 console.log(response.data)
             }).catch(function (error) {
                 console.log(error)

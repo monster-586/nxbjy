@@ -38,4 +38,14 @@ public class Result {
     public void setSysuser(User sysuser) {
         this.sysuser = sysuser;
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "msg='" + msg + '\'' +
+                ", sysuser=" + sysuser +
+                ", type=" + type +
+                ", article=" + article +
+                '}';
+    }
 }

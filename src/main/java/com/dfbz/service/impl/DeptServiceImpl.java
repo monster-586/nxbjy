@@ -13,7 +13,9 @@ import org.springframework.util.StringUtils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 
@@ -29,24 +31,36 @@ public class DeptServiceImpl extends tservisceIpm<Dept> implements DeptService {
     public Result insertDept(Map<String, Object> map) {
         Result result = new Result();
         result.setMsg("会议添加失败");
-        System.out.println(map);
+
         Meeting meeting = new Meeting();
         if (!StringUtils.isEmpty(map.get("title"))) {
             meeting.setTitle((String) map.get("title"));
         }
         if (!StringUtils.isEmpty(map.get("deptId"))) {
-            meeting.setDeptId((Integer)map.get("deptId"));
-            Dept deptId = deptMapper.selectByPrimaryKey((Integer) map.get("deptId"));
+            String deptId1 = (String) map.get("deptId");
+            Integer deptid = Integer.valueOf(deptId1);
+            meeting.setDeptId(deptid);
+            Dept deptId = deptMapper.selectByPrimaryKey(deptid);
             meeting.setDeptName(deptId.getName());
         }
         if (!StringUtils.isEmpty(map.get("makeUser"))) {
-            meeting.setMakeUser((String) map.get("makeUser"));
+
+            ArrayList<Integer> list = (ArrayList) map.get("makeUser");
+            System.out.println(list);
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            for (int i = 0; i < list.size(); i++) {
+                sb.append(list.get(i) +",");
+            }
+            sb.deleteCharAt(sb.length() - 1);
+            sb.append("]");
+            meeting.setMakeUser(sb.toString());
         }
         if (!StringUtils.isEmpty(map.get("startTime"))) {
             try {
-                String startTime =(String) map.get("startTime");
+                String startTime = (String) map.get("startTime");
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                Date date=simpleDateFormat.parse(startTime);
+                Date date = simpleDateFormat.parse(startTime);
                 meeting.setEndTime(date);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -54,9 +68,9 @@ public class DeptServiceImpl extends tservisceIpm<Dept> implements DeptService {
         }
         if (!StringUtils.isEmpty(map.get("endTime"))) {
             try {
-                String endTime =(String) map.get("endTime");
+                String endTime = (String) map.get("endTime");
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                Date date=simpleDateFormat.parse(endTime);
+                Date date = simpleDateFormat.parse(endTime);
                 meeting.setStartTime(date);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -67,11 +81,11 @@ public class DeptServiceImpl extends tservisceIpm<Dept> implements DeptService {
         }
         meeting.setPublishDate(new Date());
         meeting.setStatus(0);
-
         int i = meetingMapper.insert(meeting);
-        if(i>0){
+        if (i > 0) {
             result.setMsg("会议添加成功");
         }
+        System.out.println(result);
         return result;
 
     }
